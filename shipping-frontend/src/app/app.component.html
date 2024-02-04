@@ -1,0 +1,6 @@
+<menu-bar [(activeComponent)]="activeComponent"></menu-bar>
+
+<div class="main-component-wrapper">
+  <add-parcel *ngIf="activeComponent.name === 'add-parcel'"></add-parcel>
+  <parcel-list *ngIf="activeComponent.name === 'parcel-list'"></parcel-list>
+</div>

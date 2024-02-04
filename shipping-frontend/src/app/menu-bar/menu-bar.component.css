@@ -1,0 +1,11 @@
+mat-toolbar {
+  color: white;
+  padding: 0 100px;
+  box-sizing: border-box;
+}
+
+mat-toolbar .navigation-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}

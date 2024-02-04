@@ -1,0 +1,47 @@
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.filter-form mat-form-field {
+  width: 200px;
+}
+.filter-form mat-form-field.wide {
+  width: 400px;
+}
+
+.table-container {
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.no-rows-message {
+  text-align: center;
+  padding: 20px;
+}
+
+[class*="mat-column-"] {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100px;
+}
+.mat-column-streetAddress {
+  width: 150px;
+}
+.mat-column-description {
+  width: 300px;
+}
+
+mat-paginator.paginator-top {
+  border-bottom: 1px solid #e0e0e0;
+}
+mat-paginator.paginator-bottom {
+  border-top: 1px solid #e0e0e0;
+}
+
+::ng-deep.mat-mdc-paginator .mat-mdc-paginator-range-label {
+  display: none;
+}

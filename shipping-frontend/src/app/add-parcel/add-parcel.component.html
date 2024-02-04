@@ -1,0 +1,99 @@
+<div class="add-parcel-form mat-typography">
+  <h2>Add a new parcel</h2>
+  <form [formGroup]="parcel" (ngSubmit)="onSubmit()">
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+    >
+      <mat-label>SKU (unique)</mat-label>
+      <input
+        formControlName="sku"
+        name="sku"
+        matInput
+        placeholder="SKU"
+        autocomplete="off"
+        (focusout)="trim($event)"
+      />
+    </mat-form-field>
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+    >
+      <mat-label>Description</mat-label>
+      <input
+        formControlName="description"
+        matInput
+        placeholder="Description"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+    >
+      <mat-label>Street address</mat-label>
+      <input
+        formControlName="streetAddress"
+        matInput
+        placeholder="Street Address"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+    >
+      <mat-label>Town</mat-label>
+      <input
+        formControlName="town"
+        matInput
+        placeholder="Town"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+    >
+      <mat-label>Country</mat-label>
+      <input
+        formControlName="country"
+        matInput
+        placeholder="Country"
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <mat-form-field
+      hideRequiredMarker
+      subscriptSizing="dynamic"
+      appearance="outline"
+      (mousedown)="picker.open(); $event.preventDefault()"
+    >
+      <mat-label>Delivery date (DD/MM/YYYY)</mat-label>
+      <input formControlName="deliveryDate" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="message" class="{{ message.type }}-message">
+      {{ message.text }}
+    </div>
+    <button
+      id="submit-button"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!parcel.valid || submitButtonLoading"
+    >
+      <mat-spinner *ngIf="submitButtonLoading" color="#FFFFFF"></mat-spinner>
+      <span *ngIf="!submitButtonLoading">Submit</span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <div>{{ activeComponent.label }}</div>
+  <div class="navigation-buttons">
+    <button
+      mat-flat-button
+      *ngFor="let item of menuItems"
+      (click)="onMenuButtonClick(item)"
+    >
+      {{ item.label }}
+    </button>
+  </div>
+</mat-toolbar>
