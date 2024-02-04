@@ -1,28 +1,25 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ParcelsModule } from './parcels/parcels.module';
 import { Parcel } from './parcels/parcel.entity';
+import * as dotenv from 'dotenv';
+dotenv.config({
+  override: false,
+});
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRootAsync({
-      useFactory: (config) => ({
-        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: config.get('DATABASE_USER'),
-        password: config.get('DATABASE_PASSWORD'),
-        database: 'shipping',
-        entities: [Parcel],
-        synchronize: false,
-      }),
-      inject: [ConfigService],
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DATABASE_HOST,
+      port: +process.env.DATABASE_PORT || 5432,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      entities: [Parcel],
+      synchronize: true,
     }),
     ParcelsModule,
   ],

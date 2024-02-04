@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shipping
+    ports:
+      - "5432:5432"
+
+  nestjs-app:
+    build:
+      context: ./shipping-backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: shipping
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+  angular-app:
+    build:
+      context: ./shipping-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - nestjs-app
+
+volumes:
+  pgdata:

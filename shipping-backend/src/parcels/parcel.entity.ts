@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
 
-@Entity()
+@Entity('parcels')
 export class Parcel {
   @Column({ unique: true, primary: true })
   uniqueId: string;
